@@ -1,142 +1,151 @@
 <template>
-    
-  <div id="app">
-        
-    <div class="header">
-            
-      <h1>Hotel</h1>
-            
-      <nav>
-        <button> Inicio </button>
-        <button v-on:click="addUser" v-if="is_auth"> Saldo </button>
-        <button v-on:click="mostrarHabitaciones">Mostrar Habitaciones</button>        
-        <!-- <button v-if="is_auth"> Transacción </button>        
-        <button v-if="is_auth">Cerrar Sesión</button> -->
-      </nav>
-          
-    </div>
-     
-    <div class="main-component">
-               
-      <router-view></router-view>
-    </div>
+sadasd
+  <div id="App">
+    <form v-on:submit.prevent="submitForm">
+      <h1>Registrar Usuario</h1>
+      <div class="icon">
+        <i class="fas fa-user-circle"></i>
+      </div>
 
-    <div class="footer">
-            
-      <h2>About us</h2>
-          
-    </div>
+      <div class="container">
+        <label for="name"><strong>Nombre</strong></label>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          name="name"
+          required
+          v-model="user.nombres"
+        />
+        <label for="lname"><strong>Apellido</strong></label>
+        <input
+          type="text"
+          placeholder="Enter Last Name"
+          name="lname"
+          required
+          v-model="user.apellidos"
+        />
+        <label for="mail"><strong>E-mail</strong></label>
+        <input
+          type="text"
+          placeholder="Enter E-mail"
+          name="mail"
+          required
+          v-model="user.email"
+        />
+        <label for="psw"><strong>Password</strong></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+          v-model="user.password"
+        />
+      </div>
+      <button type="submit"><strong>SIGN UP</strong></button>
+      <div class="container" style="background-color: #eee">
+        <label style="padding-left: 15px">
+          <input type="checkbox" checked="checked" name="remember" /> Remember
+          me
+        </label>
+        <span class="psw"><a href="#">Forgot password?</a></span>
+      </div>
+    </form>
   </div>
 </template>
 
-
 <script>
+import axios from "axios";
 export default {
   name: "App",
-  components: {},
-  data: function () {
+  data() {
     return {
-      is_auth: localStorage.getItem("isAuth") || false,
+      user: {
+        id_usuario: (int = 0),
+        nombres: str,
+        apellidos: str,
+        email: str,
+        password: str,
+      },
     };
   },
   methods: {
-    addUser: function () {
-      //if (this.$route.name != "user_balance") {
-        //let username = localStorage.getItem("current_username");
-        this.$router.push({
-          name: "add_user",
-          params: { username: "Prueba" },
-
+    submitForm() {
+      axios
+        .post("/users", this.user)
+        .then((res) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          alert("ERROR Servidor");
+        })
+        .finally(() => {
+          //Perform action in always
         });
-      //}
-    },
-    mostrarHabitaciones: function () {
-        this.$router.push({
-          name: "show_rooms",
-          //params: {},
-        });
-      //}
     },
   },
 };
 </script>
 
 <style>
+html,
 body {
-  margin: 0 0 0 0;
-}
-
-.header {
-  margin: 0%;
-  padding: 0;
-  width: 100%;
-  height: 10vh;
-  min-height: 100px;
-
-  background-color: #47282f;
-  color: #e5e7e9;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header h1 {
-  width: 20%;
-  text-align: center;
-}
-
-.header nav {
-  height: 100%;
-  width: 45%;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  font-size: 20px;
-}
-
-.header nav button {
-  color: #e5e7e9;
-  background: #47282f;
-  border: 1px solid #e5e7e9;
-
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-
-.header nav button:hover {
-  color: #47282f;
-  background: #e5e7e9;
-  border: 1px solid #e5e7e9;
-}
-
-.main-component {
-  height: 75vh;
-  margin: 0%;
-  padding: 0%;
-
-  background: #f8f2bf;
-}
-
-.footer {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 10vh;
-  min-height: 100px;
-
-  background-color: #47282f;
-  color: #e5e7e9;
-}
-
-.footer h2 {
-  width: 100%;
-  height: 100%;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+}
+form {
+  border: 5px solid #f1f1f1;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 16px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.icon {
+  font-size: 110px;
+  display: flex;
+  justify-content: center;
+  color: #4286f4;
+}
+button {
+  background-color: #4286f4;
+  color: white;
+  padding: 14px 0;
+  margin: 10px 0;
+  border: none;
+  cursor: grab;
+  width: 48%;
+}
+h1 {
+  text-align: center;
+  fone-size: 18;
+}
+button:hover {
+  opacity: 0.8;
+}
+.formcontainer {
+  text-align: center;
+  margin: 24px 50px 12px;
+}
+.container {
+  padding: 16px 0;
+  text-align: left;
+}
+span.psw {
+  float: right;
+  padding-top: 0;
+  padding-right: 15px;
+}
+/* Change styles for span on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
 }
 </style>
