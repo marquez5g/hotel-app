@@ -5,6 +5,7 @@
       <nav>
         <button @click="inicio">Inicio</button>
         <button @click="registrar">Registarse</button>
+        <button @click="autenticar">Iniciar sesión</button>
       </nav>
     </div>
 
@@ -13,12 +14,12 @@
     </div>
 
     <div class="footer">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h2>Sobre nosotros</h2>
     </div>
   </div>
@@ -40,7 +41,6 @@ export default {
   components: {},
 
   methods: {
-
     registrar: function () {
       this.$router.push({
         name: "RegistrarUsuario",
@@ -49,12 +49,16 @@ export default {
     },
     inicio: function () {
       this.$router.push({
-        name: "Inicio",
+        name: "Home",
+      });
+    },
+    autenticar: function () {
+      this.$router.push({
+        name: "Autenticar",
         // params: { username: username },
       });
-    }, 
+    },
   },
-
 };
 </script>
 
@@ -67,8 +71,6 @@ export default {
 
 
 <style>
-
-
 @font-face {
   font-family: "Muli-Regular";
   src: url("./fonts/muli/Muli-Regular.ttf");
@@ -80,7 +82,7 @@ export default {
 @font-face {
   font-family: "Gotham";
   src: url("./fonts/muli/Gotham-Bold.ttf");
-} 
+}
 
 body {
   margin: 0 0 0 0;
@@ -104,7 +106,7 @@ body {
 .header h1 {
   width: 20%;
   text-align: center;
-  color: #283747
+  color: #283747;
 }
 
 .header nav {
@@ -155,7 +157,7 @@ body {
 .footer h2 {
   width: 100%;
   height: 100%;
-  color:#283747;
+  color: #283747;
   display: flex;
   justify-content: center;
   align-items: center;

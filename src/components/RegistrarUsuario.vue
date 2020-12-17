@@ -9,7 +9,7 @@
         <div class="form-group">
           <div class="form-wrapper">
             <label for="">Nombre</label>
-            <input type="Nombre" class="form-control" v-model="user.nombres" />
+            <input type="Nombre" class="form-control" v-model="user.nombres" required/>
           </div>
         </div>
         <div class="form-wrapper">
@@ -18,6 +18,7 @@
             type="Apellido"
             class="form-control"
             v-model="user.apellidos"
+            required
           />
         </div>
         <div class="form-wrapper">
@@ -26,18 +27,20 @@
             type="Documento"
             class="form-control"
             v-model="user.documento"
+            required
           />
         </div>
         <div class="form-wrapper">
           <label for="">Correo</label>
-          <input type="Correo" class="form-control" v-model="user.email" />
+          <input type="Correo" class="form-control" v-model="user.email" required/>
         </div>
         <div class="form-wrapper">
           <label for="">Contraseña</label>
           <input
-            type="Contraseña"
+            type="password"
             class="form-control"
             v-model="user.password"
+            required
           />
         </div>
         <div class="checkbox">
@@ -70,7 +73,7 @@ export default {
   methods: {
     registarUsuario() {
       axios
-        .post("http://127.0.0.1:8000/users/", this.user)
+        .post("https://hotel-app-5g.herokuapp.com/users/", this.user)
         .then((result) => {
           console.log(result);
         })

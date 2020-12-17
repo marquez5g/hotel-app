@@ -1,36 +1,51 @@
 <template>
-  <div class="hello">
-    <!-- <h1>{{ msg }}</h1> -->
-    <h1>Bienvenido a OnlyRooms</h1>
-    
+  <div id="User">
+    <h2>
+      Only <br />
+      <span> Rooms </span>
+    </h2>
+
+    <form action="/action_page.php">
+      <label for="llegada">Llegada:</label>
+      <input type="date" id="llegada" name="llegada" />
+      <label for="salida">Salida:</label>
+      <input type="date" id="salida" name="salida" />
+      <label for="personas">Personas:</label>
+      <input type="number" name="personas" min="1" max="30">
+      <button class="btn btn-success" @click="buscarDisponibilidad">Buscar</button>
+    </form>
   </div>
 </template>
 
 <script>
-/* export default {
-  name: 'Home',
-  data () {
+export default {
+  name: "User",
+  data: function () {
     return {
-      msg: 'Bienvenido a OnlyRooms'
-    }
-  }
-} */
+      username: "none",
+    };
+  },
+  created: function () {
+    this.username = this.$route.params.username;
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style>
+#User {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+#User h2 {
+  font-size: 100px;
+  color: #283747;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+#User span {
+  color: rgb(187, 10, 10);
+  font-weight: bold;
 }
 </style>
