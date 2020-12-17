@@ -1,32 +1,54 @@
 <template>
-  <div id="RegistrarUsuario">
-  
-    <form v-on:submit.prevent="created">
-      <h1>Registrar Usuario</h1>
-      <div class="icon">
-        <i class="fas fa-user-circle"></i>
-      </div>
-      
-      <div class="container">
-        <label for="name"><strong>Nombre</strong></label>
-        <input type="text" placeholder="Enter Name" name="name" required v-model="user.nombres">
-        <label for="lname"><strong>Apellido</strong></label>
-        <input type="text" placeholder="Enter Last Name" name="lname" required v-model="user.apellidos">
-        <label for="mail"><strong>E-mail</strong></label>
-        <input type="text" placeholder="Enter E-mail" name="mail" required v-model="user.email">
-        <label for="psw"><strong>Password</strong></label>
-        <input type="password" placeholder="Enter Password" name="psw" required v-model="user.password">
-      </div>
-      <button type="submit"><strong>SIGN UP</strong></button>
-      <div class="container" style="background-color: #eee">
-        <label style="padding-left: 15px">
-        <input type="checkbox"  checked="checked" name="remember"> Remember me
-        </label>
-        <span class="psw"><a href="#">Forgot password?</a></span>
-      </div>
-    </form>
- 
-
+  <div
+    class="wrapper"
+    style="background-image: url('assets/bg-registration-form-2.jpg')"
+  >
+    <div class="inner">
+      <form v-on:submit.prevent="registarUsuario">
+        <h3>Formulario de registro</h3>
+        <div class="form-group">
+          <div class="form-wrapper">
+            <label for="">Nombre</label>
+            <input type="Nombre" class="form-control" v-model="user.nombres" />
+          </div>
+        </div>
+        <div class="form-wrapper">
+          <label for="">Apellido</label>
+          <input
+            type="Apellido"
+            class="form-control"
+            v-model="user.apellidos"
+          />
+        </div>
+        <div class="form-wrapper">
+          <label for="">Documento</label>
+          <input
+            type="Documento"
+            class="form-control"
+            v-model="user.documento"
+          />
+        </div>
+        <div class="form-wrapper">
+          <label for="">Correo</label>
+          <input type="Correo" class="form-control" v-model="user.email" />
+        </div>
+        <div class="form-wrapper">
+          <label for="">Contraseña</label>
+          <input
+            type="Contraseña"
+            class="form-control"
+            v-model="user.password"
+          />
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" /> Acepto términos y condiciones
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <button>Registrarse</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -36,85 +58,259 @@ export default {
   name: "RegistrarUsuario",
   data: function () {
     return {
-    user: {   
-    nombres: "",
-    apellidos: "",
-    email: "",
-    password: "",
-}
+      user: {
+        nombres: "",
+        apellidos: "",
+        documento: "",
+        email: "",
+        password: "",
+      },
     };
   },
-  created: function () {
-    axios
-      .post("http://127.0.0.1:8000/users/", this.user)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        alert("ERROR Servidor");
-      });
+  methods: {
+    registarUsuario() {
+      axios
+        .post("http://127.0.0.1:8000/users/", this.user)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          alert("ERROR Servidor");
+        });
+    },
   },
 };
 </script>
 
-<style>
-      html, body {
-      display: flex;
-      justify-content: center;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 15px;
-      }
-      form {
-      border: 5px solid #f1f1f1;
-      }
-      input[type=text], input[type=password] {
-      width: 100%;
-      padding: 16px 8px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      }
-      .icon {
-      font-size: 110px;
-      display: flex;
-      justify-content: center;
-      color: #4286f4;
-      }
-      button {
-      background-color: #4286f4;
-      color: white;
-      padding: 14px 0;
-      margin: 10px 0;
-      border: none;
-      cursor: grab;
-      width: 48%;
-      }
-      h1 {
-      text-align:center;
-      fone-size:18;
-      }
-      button:hover {
-      opacity: 0.8;
-      }
-      .formcontainer {
-      text-align: center;
-      margin: 24px 50px 12px;
-      }
-      .container {
-      padding: 16px 0;
-      text-align:left;
-      }
-      span.psw {
-      float: right;
-      padding-top: 0;
-      padding-right: 15px;
-      }
-      /* Change styles for span on extra small screens */
-      @media screen and (max-width: 300px) {
-      span.psw {
-      display: block;
-      float: none;
-      }
-      }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Muli-Regular";
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  margin: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: "Muli-Regular";
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  min-width: 992px;
+  margin: auto;
+  padding-top: 68px;
+  padding-bottom: 40px;
+  background: url("../assets/fondo.png");
+}
+.inner h3 {
+  font-size: 18px;
+  font-family: "Gotham";
+  text-align: left;
+  margin-bottom: 30px;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0px;
+}
+
+form {
+  width: 40%;
+  padding-left: 75px;
+}
+
+.form-wrapper {
+  margin-bottom: 15px;
+}
+.form-wrapper label {
+  color: #ccc;
+  font-family: "Muli-Regular";
+  font-size: 13px;
+  margin-bottom: 9px;
+  display: block;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  display: block;
+  width: 70%;
+  height: 30px;
+  padding: 0 20px;
+  border-radius: 05px;
+  font-family: "Muli-Bold";
+  background: none;
+}
+.form-control:focus {
+  border: 1px solid #f4f4f477;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-left: 20px;
+}
+select option[value=""][disabled] {
+  display: none;
+}
+
+button {
+  border: none;
+  width: 230px;
+  height: 30px;
+  margin: left;
+  margin-top: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #cdbdb0;
+  font-size: 15px;
+  color: #fff;
+  font-family: "Gotham";
+  border-radius: 05px;
+  overflow: hidden;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f4f4f472;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+button:hover:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+.checkbox {
+  position: relative;
+}
+.checkbox label {
+  padding-left: 22px;
+  cursor: pointer;
+}
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 12px;
+  width: 13px;
+  border-radius: 2px;
+  background-color: #ebebeb;
+  border: 1px solid #ccc;
+  font-family: Material-Design-Iconic-Font;
+  color: #000;
+  font-size: 10px;
+  font-weight: bolder;
+}
+.checkmark:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  content: "\f26b";
+}
+
+@media (max-width: 991px) {
+  .inner {
+    min-width: 768px;
+  }
+}
+@media (max-width: 767px) {
+  .inner {
+    min-width: auto;
+    background: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  form {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
 </style>

@@ -1,4 +1,4 @@
-# sprint3-vista
+# sprint3-final
 
 > A Vue.js project
 

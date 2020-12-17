@@ -1,151 +1,165 @@
 <template>
-sadasd
-  <div id="App">
-    <form v-on:submit.prevent="submitForm">
-      <h1>Registrar Usuario</h1>
-      <div class="icon">
-        <i class="fas fa-user-circle"></i>
-      </div>
+  <div id="app" class="app">
+    <div class="header">
+      <h1>OnlyRooms</h1>
+      <nav>
+        <button @click="inicio">Inicio</button>
+        <button @click="registrar">Registarse</button>
+      </nav>
+    </div>
 
-      <div class="container">
-        <label for="name"><strong>Nombre</strong></label>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          name="name"
-          required
-          v-model="user.nombres"
-        />
-        <label for="lname"><strong>Apellido</strong></label>
-        <input
-          type="text"
-          placeholder="Enter Last Name"
-          name="lname"
-          required
-          v-model="user.apellidos"
-        />
-        <label for="mail"><strong>E-mail</strong></label>
-        <input
-          type="text"
-          placeholder="Enter E-mail"
-          name="mail"
-          required
-          v-model="user.email"
-        />
-        <label for="psw"><strong>Password</strong></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-          v-model="user.password"
-        />
-      </div>
-      <button type="submit"><strong>SIGN UP</strong></button>
-      <div class="container" style="background-color: #eee">
-        <label style="padding-left: 15px">
-          <input type="checkbox" checked="checked" name="remember" /> Remember
-          me
-        </label>
-        <span class="psw"><a href="#">Forgot password?</a></span>
-      </div>
-    </form>
+    <div class="main-component">
+      <router-view></router-view>
+    </div>
+
+    <div class="footer">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+      <h2>Sobre nosotros</h2>
+    </div>
   </div>
 </template>
 
+
 <script>
-import axios from "axios";
+import vueRouter from "vue-router";
+
 export default {
   name: "App",
-  data() {
+
+  data: function () {
     return {
-      user: {
-        id_usuario: (int = 0),
-        nombres: str,
-        apellidos: str,
-        email: str,
-        password: str,
-      },
+      is_auth: localStorage.getItem("isAuth") || false,
     };
   },
+
+  components: {},
+
   methods: {
-    submitForm() {
-      axios
-        .post("/users", this.user)
-        .then((res) => {
-          console.log(result);
-        })
-        .catch((error) => {
-          alert("ERROR Servidor");
-        })
-        .finally(() => {
-          //Perform action in always
-        });
+
+    registrar: function () {
+      this.$router.push({
+        name: "RegistrarUsuario",
+        // params: { username: username },
+      });
     },
+    inicio: function () {
+      this.$router.push({
+        name: "Inicio",
+        // params: { username: username },
+      });
+    }, 
   },
+
 };
 </script>
 
+
+
+
+
+
+
+
+
 <style>
-html,
+
+
+@font-face {
+  font-family: "Muli-Regular";
+  src: url("./fonts/muli/Muli-Regular.ttf");
+}
+@font-face {
+  font-family: "Muli-SemiBold";
+  src: url("./fonts/muli/Muli-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Gotham";
+  src: url("./fonts/muli/Gotham-Bold.ttf");
+} 
+
 body {
-  display: flex;
-  justify-content: center;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 15px;
+  margin: 0 0 0 0;
 }
-form {
-  border: 5px solid #f1f1f1;
-}
-input[type="text"],
-input[type="password"] {
+
+.header {
+  margin: 0%;
+  padding: 0;
   width: 100%;
-  padding: 16px 8px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  height: 10vh;
+  min-height: 100px;
+
+  /* background-color: #283747; */
+  color: #e5e7e9;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.icon {
-  font-size: 110px;
+
+.header h1 {
+  width: 20%;
+  text-align: center;
+  color: #283747
+}
+
+.header nav {
+  height: 100%;
+  width: 40%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: 20px;
+}
+
+.header nav button {
+  color: #e5e7e9;
+  background: #283747;
+  border: 1px solid #e5e7e9;
+
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.header nav button:hover {
+  color: #283747;
+  background: #e5e7e9;
+  border: 1px solid #e5e7e9;
+}
+
+.main-component {
+  height: 75vh;
+  margin: 0%;
+  padding: 0%;
+
+  background: #fdfefe;
+}
+
+.footer {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 10vh;
+  min-height: 100px;
+
+  /* background-color: #283747; */
+  color: #e5e7e9;
+}
+
+.footer h2 {
+  width: 100%;
+  height: 100%;
+  color:#283747;
   display: flex;
   justify-content: center;
-  color: #4286f4;
-}
-button {
-  background-color: #4286f4;
-  color: white;
-  padding: 14px 0;
-  margin: 10px 0;
-  border: none;
-  cursor: grab;
-  width: 48%;
-}
-h1 {
-  text-align: center;
-  fone-size: 18;
-}
-button:hover {
-  opacity: 0.8;
-}
-.formcontainer {
-  text-align: center;
-  margin: 24px 50px 12px;
-}
-.container {
-  padding: 16px 0;
-  text-align: left;
-}
-span.psw {
-  float: right;
-  padding-top: 0;
-  padding-right: 15px;
-}
-/* Change styles for span on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
+  align-items: center;
 }
 </style>
+
+
