@@ -41,7 +41,7 @@ export default {
     methods: {
         processAuthUser: function(){
             var self = this
-            axios.post("https://hotel-app-5g.herokuapp.com/user/auth/", self.user_in,  {headers: {}})
+            axios.post("https://hotel-api-5g.herokuapp.com/user/auth/", self.user_in,  {headers: {}})
                 .then((result) => {
                     alert("Autenticación Exitosa");
                     self.$emit('log-in', self.user_in.documento)

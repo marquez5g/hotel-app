@@ -73,7 +73,7 @@ export default {
   methods: {
     registarUsuario() {
       axios
-        .post("https://hotel-app-5g.herokuapp.com/users/", this.user)
+        .post("https://hotel-api-5g.herokuapp.com/users/", this.user)
         .then((result) => {
           console.log(result);
         })
