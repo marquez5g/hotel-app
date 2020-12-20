@@ -36,15 +36,15 @@ export default {
       this.username = this.$route.params.username;
     },
     buscarDisponibilidad: function () {
-      axios.get("https://hotel-api-5g.herokuapp.com/rooms/")
-      .then((result)=>{
-        alert(result)
-      })
-      .catch((error) => {
-        if (error.response.status == "404")
+      axios
+        .get("https://hotel-api-5g.herokuapp.com/rooms/")
+        .then((result) => {
+          alert("Habitaciones");
+        })
+        .catch((error) => {
+          if (error.response.status == "404")
             alert("ERROR 404: No hay habitaciones disponibles.");
-       
-      })
+        });
     },
   },
 };
