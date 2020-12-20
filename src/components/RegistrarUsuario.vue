@@ -75,7 +75,7 @@ export default {
       axios
         .post("https://hotel-api-5g.herokuapp.com/users/", this.user)
         .then((result) => {
-          console.log(result);
+          alert("Registro exitoso");
         })
         .catch((error) => {
           alert("ERROR Servidor");

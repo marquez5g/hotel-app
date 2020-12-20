@@ -11,22 +11,41 @@
       <label for="salida">Salida:</label>
       <input type="date" id="salida" name="salida" />
       <label for="personas">Personas:</label>
-      <input type="number" name="personas" min="1" max="30">
-      <button class="btn btn-success" @click="buscarDisponibilidad">Buscar</button>
+      <input type="number" name="personas" min="1" max="30" />
+      <button class="btn btn-success" @click="buscarDisponibilidad">
+        Buscar
+      </button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "User",
+  name: "Home",
   data: function () {
     return {
-      username: "none",
+      habitaciones: {
+        h1: {},
+        h2: {},
+      },
+      fecha: "",
     };
   },
-  created: function () {
-    this.username = this.$route.params.username;
+  methods: {
+    created: function () {
+      this.username = this.$route.params.username;
+    },
+    buscarDisponibilidad: function () {
+      axios.post("https://hotel-api-5g.herokuapp.com/rooms")
+      .then((result)=>{
+        alert(result)
+      })
+      .catch((error) => {
+        if (error.response.status == "404")
+            alert("ERROR 404: No hay habitaciones disponibles.");
+       
+      })
+    },
   },
 };
 </script>
