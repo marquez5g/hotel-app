@@ -36,7 +36,7 @@ export default {
       this.username = this.$route.params.username;
     },
     buscarDisponibilidad: function () {
-      axios.post("https://hotel-api-5g.herokuapp.com/rooms/")
+      axios.get("https://hotel-api-5g.herokuapp.com/rooms/")
       .then((result)=>{
         alert(result)
       })
