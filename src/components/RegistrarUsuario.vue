@@ -4,7 +4,7 @@
     style="background-image: url('assets/bg-registration-form-2.jpg')"
   >
     <div class="inner">
-      <form v-on:submit.prevent="registarUsuario">
+      <form ref="roomsForm" v-on:submit.prevent="registarUsuario">
         <h3>Formulario de registro</h3>
         <div class="form-group">
           <div class="form-wrapper">
@@ -76,6 +76,7 @@ export default {
         .post("https://hotel-api-5g.herokuapp.com/users/", this.user)
         .then((result) => {
           alert("Registro exitoso");
+          this.$refs.roomsForm.reset();
         })
         .catch((error) => {
           alert("ERROR Servidor");
