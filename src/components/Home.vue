@@ -5,47 +5,40 @@
       <span> Rooms </span>
     </h2>
 
-    <form action="/action_page.php">
+    <form>
       <label for="llegada">Llegada:</label>
       <input type="date" id="llegada" name="llegada" />
       <label for="salida">Salida:</label>
       <input type="date" id="salida" name="salida" />
       <label for="personas">Personas:</label>
       <input type="number" name="personas" min="1" max="30" />
-      <button class="btn btn-success" @click="buscarDisponibilidad">
+      <button class="btn btn-success" @click="showRooms">
         Buscar
       </button>
     </form>
+    
+
   </div>
+  
 </template>
 
 <script>
+import vueRouter from "vue-router";
+
 export default {
   name: "Home",
   data: function () {
     return {
-      habitaciones: {
-        h1: {},
-        h2: {},
-      },
-      fecha: "",
+      data: null,
     };
   },
   methods: {
-    created: function () {
-      this.username = this.$route.params.username;
-    },
-    buscarDisponibilidad: function () {
-      axios
-        .get("https://hotel-api-5g.herokuapp.com/rooms/")
-        .then((result) => {
-          alert("Habitaciones");
-        })
-        .catch((error) => {
-          if (error.response.status == "404")
-            alert("ERROR 404: No hay habitaciones disponibles.");
-        });
-    },
+    showRooms: function(){
+      this.$router.push({
+        name: "MostrarHabitaciones",
+      })
+    }
+    
   },
 };
 </script>

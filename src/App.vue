@@ -58,17 +58,15 @@ export default {
         // params: { username: username },
       });
     },
+    buscar: function () {
+      this.$router.push({
+        name: "test",
+        // params: { username: username },
+      });
+    },
   },
 };
 </script>
-
-
-
-
-
-
-
-
 
 <style>
 @font-face {
