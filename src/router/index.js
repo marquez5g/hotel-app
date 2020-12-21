@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import RegistrarUsuario from '@/components/RegistrarUsuario'
 import Autenticar from '@/components/Autenticar'
 import MostrarHabitaciones from '@/components/MostrarHabitaciones'
-
+//
 
 
 
